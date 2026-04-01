@@ -1,45 +1,27 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "livro.h"
 
-struct livro
-{
-    char titulo[100], autor[50], genero;
-    int ID, paginas, ano_de_publicacao;
+Livro criarLivro(int id, int ano_de_publicacao, int quantidade_de_paginas, int ja_lido, char *titulo, char *autor, char *genero) {
+    Livro book;
 
-};
+    book.id = id;
+    book.titulo = (char*) malloc(strlen(titulo) + 1);
+    strcpy(book.titulo, titulo);
+    book.autor = (char*) malloc(strlen(autor) + 1);
+    strcpy(book.autor, autor);
+    book.genero = (char*) malloc(strlen(genero) + 1);
+    strcpy(book.genero, genero);
+    book.ano_de_publicacao = ano_de_publicacao;
+    book.quantidade_de_paginas = quantidade_de_paginas;
+    book.ja_lido = ja_lido;
 
-void mostrar_livro(struct livro bib[], int posicao)
-{
-    printf("Livro %d:\nTítulo: %s\nPáginas: %d\n",posicao + 1,
-        bib[posicao].titulo, bib[posicao].paginas);
+    return book;
 }
 
-void mostrar_biblioteca(struct livro bib[], int tamanho)
-{
-    int i;
-    
-    for(i = 0; i < tamanho; i++)
-        mostrar_livro(bib, i);
-}
-void ler_livro(struct livro bib[], int posicao)
-{
-    printf("Livro %d:\nDigite o título: ", posicao + 1);
-    scanf("%s", bib[posicao].titulo);
-    printf("Digite quantidade de páginas: ");
-    scanf("%d", & bib[posicao].paginas);
-}
-
-void ler_biblioteca(struct livro bib[], int tamanho)
-{
-    int i;
-    
-    for(i = 0; i < tamanho; i++)
-        ler_livro(bib, i);
-}
-
-void main()
-{
-    struct livro biblioteca[5];
-    
-    ler_biblioteca(biblioteca, 5);
-    mostrar_biblioteca(biblioteca, 5);
+void liberarLivro(Livro *book) {
+    free(book->titulo);
+    free(book->autor);
+    free(book->genero);
 }
