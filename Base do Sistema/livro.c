@@ -4,24 +4,24 @@
 #include "livro.h"
 
 Livro criarLivro(int id, int ano_de_publicacao, int quantidade_de_paginas, int ja_lido, char *titulo, char *autor, char *genero) {
-    Livro book;
+    Livro livro;
 
-    book.id = id;
-    book.titulo = (char*) malloc(strlen(titulo) + 1);
-    strcpy(book.titulo, titulo);
-    book.autor = (char*) malloc(strlen(autor) + 1);
-    strcpy(book.autor, autor);
-    book.genero = (char*) malloc(strlen(genero) + 1);
-    strcpy(book.genero, genero);
-    book.ano_de_publicacao = ano_de_publicacao;
-    book.quantidade_de_paginas = quantidade_de_paginas;
-    book.ja_lido = ja_lido;
+    livro.id = id;
+    livro.titulo = (char*) malloc(strlen(titulo) + 1);
+    strcpy(livro.titulo, titulo);
+    livro.autor = (char*) malloc(strlen(autor) + 1);
+    strcpy(livro.autor, autor);
+    livro.genero = (char*) malloc(strlen(genero) + 1);
+    strcpy(livro.genero, genero);
+    livro.ano_de_publicacao = ano_de_publicacao;
+    livro.quantidade_de_paginas = quantidade_de_paginas;
+    livro.ja_lido = ja_lido;
 
-    return book;
+    return livro;
 }
 
-void liberarLivro(Livro *book) {
-    free(book->titulo);
-    free(book->autor);
-    free(book->genero);
+void liberarLivro(Livro *livro) {
+    free(livro->titulo);
+    free(livro->autor);
+    free(livro->genero);
 }
